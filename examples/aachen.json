@@ -1,0 +1,21 @@
+{
+  "name": "Ausländeramt Aachen",
+  "url": "https://termine.staedteregion-aachen.de/auslaenderamt/location?mdt=95&select_cnc=1&cnc-341=1&cnc-361=0&cnc-372=0&cnc-373=0&cnc-359=0&cnc-353=0&cnc-367=0&cnc-342=0&cnc-368=0&cnc-345=0&cnc-344=0&cnc-347=0&cnc-350=0&cnc-346=0&cnc-338=0&cnc-339=0&cnc-354=0&cnc-355=0&cnc-362=0&cnc-358=0",
+  "deadline": "2026-12-20",
+  "interval_minutes": 5,
+  "open_url": "",
+  "warmup_urls": [],
+  "date_regex": "N(?:ä|ae|a)chster\\s+(?:freier\\s+)?Termin\\D{0,40}?(\\d{1,2}\\.\\d{1,2}\\.\\d{4})(?:,?\\s*(\\d{1,2}:\\d{2}))?",
+  "notify": {
+    "desktop": true,
+    "sound": true,
+    "open_browser": true,
+    "ntfy_topic": "",
+    "ntfy_server": "https://ntfy.sh",
+    "email_to": "",
+    "smtp_host": "",
+    "smtp_port": 587,
+    "smtp_user": "",
+    "smtp_password": ""
+  }
+}

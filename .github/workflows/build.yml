@@ -1,0 +1,55 @@
+name: test-and-build
+
+on:
+  push:
+    branches: [main]
+    tags: ["v*"]
+  pull_request:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    strategy:
+      matrix:
+        include:
+          - os: ubuntu-latest
+            asset: termin-watcher-linux
+          - os: macos-latest
+            asset: termin-watcher-macos
+          - os: windows-latest
+            asset: termin-watcher-windows.exe
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install
+        run: pip install -e . pytest pyinstaller
+      - name: Test
+        run: pytest -q
+      - name: Build executable
+        shell: bash
+        run: |
+          pyinstaller --onefile --name termin-watcher --paths src run_termin_watcher.py
+          if [ "${{ runner.os }}" = "Windows" ]; then mv dist/termin-watcher.exe "dist/${{ matrix.asset }}"; else mv dist/termin-watcher "dist/${{ matrix.asset }}"; fi
+          "dist/${{ matrix.asset }}" --version
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ${{ matrix.asset }}
+          path: dist/${{ matrix.asset }}
+
+  release:
+    if: startsWith(github.ref, 'refs/tags/v')
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          path: dist
+          merge-multiple: true
+      - uses: softprops/action-gh-release@v2
+        with:
+          files: dist/*
