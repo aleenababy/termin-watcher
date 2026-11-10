@@ -12,7 +12,7 @@ from urllib.parse import urljoin, urlparse
 from .config import Config
 
 USER_AGENT = (
-    "Mozilla/5.0 (compatible; termin-watcher; +https://github.com/) "
+    "Mozilla/5.0 (compatible; termin-watcher; +https://github.com/aleenababy/termin-watcher) "
     "personal appointment availability check"
 )
 TIMEOUT = 30

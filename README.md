@@ -24,8 +24,8 @@ Download the file for your system from the [Releases page](../../releases):
 **Option B: with Python (recommended if you have Python)**
 
 ```bash
-pipx install git+https://github.com/USERNAME/termin-watcher
-# or: pip install git+https://github.com/USERNAME/termin-watcher
+pipx install git+https://github.com/aleenababy/termin-watcher
+# or: pip install git+https://github.com/aleenababy/termin-watcher
 ```
 
 ## 2. Find your booking page URL
